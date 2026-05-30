@@ -6,23 +6,17 @@ import javax.inject.Inject
 import org.gradle.process.ExecOperations
 
 plugins {
-    id("java-library")
+    id("java")
     id("com.gradleup.shadow") version "9.3.1"
 }
 
-// TODO: Configure
-group = "dev.lumas.templates"
-version = "0.0.0"
+allprojects {
+    apply(plugin = "java")
 
-repositories {
-    // TODO: Configure
+    group = "org.aselstudios"
+    version = "3.0.5"
 }
 
-dependencies {
-    // TODO: Configure
-}
-
-// TODO: Configure
 tasks {
     shadowJar {
         archiveClassifier.set("")
@@ -45,20 +39,24 @@ tasks {
     }
 }
 
-// TODO: Configure
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(25))
 }
 
-// TODO: Configure
 val decompileConfig = DecompileConfig(
-    inputJar = "sources/Template.jar",
+    inputJar = "sources/LuxDialogues-3.0.5.jar",
     vineflowerVersion = "1.12.0",
     packageMappings = mapOf(
-        "dev/lumas/templates" to "."
+        "org/aselstudios/luxdialogues" to ":main",
+        "org/aselstudios/luxdialoguesapi" to ":api",
     ),
     resourceMappings = mapOf(
-        "plugin.yml" to "."
+        "plugin.yml" to ":main",
+        "config.yml" to ":main",
+        "Pack" to ":main",
+        "Output" to ":main",
+        "Dialogues" to ":main",
+        "Langs" to ":main",
     )
 )
 

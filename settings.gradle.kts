@@ -1,1 +1,4 @@
-rootProject.name = "Anvil" // TODO: Configure
+rootProject.name = "AnvilLuxDialogues"
+
+include("main")
+include("api")
