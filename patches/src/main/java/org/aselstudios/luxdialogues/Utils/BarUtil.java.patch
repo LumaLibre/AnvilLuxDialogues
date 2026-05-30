@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/aselstudios/luxdialogues/Utils/BarUtil.java b/src/main/java/org/aselstudios/luxdialogues/Utils/BarUtil.java
+index e3ed44b..24f9c87 100644
+--- a/src/main/java/org/aselstudios/luxdialogues/Utils/BarUtil.java
++++ b/src/main/java/org/aselstudios/luxdialogues/Utils/BarUtil.java
+@@ -35,7 +35,8 @@ public class BarUtil {
+          && !Bukkit.getVersion().contains("1.18")
+          && !Bukkit.getVersion().contains("1.19")
+          && !Bukkit.getVersion().contains("1.20")
+-         && !Bukkit.getVersion().contains("1.21")) {
++         && !Bukkit.getVersion().contains("1.21")
++         && !Bukkit.getVersion().contains("26.1")) { // Luma - 26.1 support
+          ChatMessageLegacy textLegacy = new ChatMessageLegacy(parsed, ChatTypes.GAME_INFO);
+          WrapperPlayServerChatMessage packet = new WrapperPlayServerChatMessage(textLegacy);
+          PacketEvents.getAPI().getPlayerManager().sendPacket(player, packet);

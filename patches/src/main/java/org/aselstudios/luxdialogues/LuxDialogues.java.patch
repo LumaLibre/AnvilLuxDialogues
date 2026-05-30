@@ -1,0 +1,51 @@
+diff --git a/src/main/java/org/aselstudios/luxdialogues/LuxDialogues.java b/src/main/java/org/aselstudios/luxdialogues/LuxDialogues.java
+index e4598b1..6207a22 100644
+--- a/src/main/java/org/aselstudios/luxdialogues/LuxDialogues.java
++++ b/src/main/java/org/aselstudios/luxdialogues/LuxDialogues.java
+@@ -39,7 +39,6 @@ import org.aselstudios.luxdialogues.Utils.PlaceholderUtil;
+ import org.aselstudios.luxdialogues.Utils.ResourceUtil;
+ import org.aselstudios.luxdialogues.Utils.UpdateUtil;
+ import org.aselstudios.luxdialogues.Utils.YamlUtil;
+-import org.aselstudios.luxdialogues.utils.bukkit.Metrics;
+ import org.aselstudios.luxdialoguesapi.LuxDialoguesAPI;
+ import org.bukkit.Bukkit;
+ import org.bukkit.configuration.file.FileConfiguration;
+@@ -59,7 +58,7 @@ public final class LuxDialogues extends LuxDialoguesAPI {
+ 
+    public void onEnable() {
+       int pluginId = 24925;
+-      new Metrics(this, pluginId);
++      new org.bstats.bukkit.Metrics(this, pluginId); // Luma - decompile
+       adventure = BukkitAudiences.create(this);
+       instance = this;
+       morePaperLib = new MorePaperLib(this);
+@@ -79,12 +78,16 @@ public final class LuxDialogues extends LuxDialoguesAPI {
+ 
+       if (!"%%__MCMODELS__%%".equalsIgnoreCase("1")) {
+          String licenseKey = YamlUtil.get("config.yml").getString("License-Key");
+-         if (licenseKey == null || licenseKey.isEmpty()) {
+-            this.getServer().getPluginManager().disablePlugin(this);
+-            Bukkit.getConsoleSender()
+-               .sendMessage(ColorUtil.colorText("&4LuxDialogues &7- &cYour license key is invalid! Create a ticket in our discord server to get one."));
+-            return;
++         // Luma start - remove third party requests
++         if (false) {
++            if (licenseKey == null || licenseKey.isEmpty()) {
++               this.getServer().getPluginManager().disablePlugin(this);
++               Bukkit.getConsoleSender()
++                       .sendMessage(ColorUtil.colorText("&4LuxDialogues &7- &cYour license key is invalid! Create a ticket in our discord server to get one."));
++               return;
++            }
+          }
++         // Luma end - remove third party requests
+ 
+          if (!this.isLicenseValid(licenseKey)) {
+             this.getServer().getPluginManager().disablePlugin(this);
+@@ -220,6 +223,7 @@ public final class LuxDialogues extends LuxDialoguesAPI {
+    }
+ 
+    private boolean isLicenseValid(String licenseKey) {
++      if (true) return true; // Luma - remove third party requests
+       try {
+          URL url = new URL("https://api.aselstudios.com/api/client");
+          HttpURLConnection connection = (HttpURLConnection)url.openConnection();
